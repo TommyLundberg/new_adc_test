@@ -6,7 +6,7 @@
 
 
 
-#include <zephyr/zephyr.h>
+#include <zephyr.h>
 #include <drivers/adc.h>
 
 
