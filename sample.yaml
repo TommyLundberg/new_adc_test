@@ -1,16 +1,13 @@
 sample:
-  description: Hello World sample, the simplest Zephyr
-    application
-  name: hello world
+  description: Testing adc for nrf5340
+  name: adc test 5340
 common:
-    tags: introduction
+    tags: test application
     integration_platforms:
       - native_posix
     harness: console
     harness_config:
       type: one_line
       regex:
-        - "Hello World! (.*)"
-tests:
-  sample.basic.helloworld:
-    tags: introduction
+        - "Hello ADC! (.*)"
+
