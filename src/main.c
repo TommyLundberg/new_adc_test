@@ -23,12 +23,12 @@ bool state;
 int32_t real_mv;
 
 /*The internal voltage reference is 600mV, 
-gain is set in dts overlay				*/
+gain is set in dts overlay*/
 int32_t gain_inv = 5;
 int32_t ref_mv = 600;
 
 /* adc read sequence struct with options to be fed into 
-the adc_read() function 							 */
+the adc_read() function*/
 const struct adc_sequence_options ch0_sequence_opts = {
 	.interval_us = 0,
 	.callback = NULL,
@@ -46,9 +46,9 @@ struct adc_sequence adc_ch0_seq = {
 	};
 
 void main(void){
-	
+
 	/*Get the channel configuration from dts overlay
-	and init the adc device						  */
+	and init the adc device	*/
 	static const struct adc_channel_cfg ch0_cfg_dt = ADC_CHANNEL_CFG_DT(DT_CHILD(DT_NODELABEL(adc), channel_0));
 	const struct device *dev_adc = DEVICE_DT_GET(DT_NODELABEL(adc));
 	
@@ -76,7 +76,7 @@ void main(void){
 
 			/*Oversampling 2^ADC_CH0_OVERSAMPLE times, each sample 
 			takes 20us, set in dts overlay. Give the adc some time 
-			to finish sampling (256*20us=5.12ms)				*/
+			to finish sampling (256*20us=5.12ms)*/
 			k_sleep(K_MSEC(10));
 			printk("Raw value read: %d\n",sample_buffer_0);
 
@@ -84,7 +84,7 @@ void main(void){
 			real_mv = (ref_mv*gain_inv*sample_buffer_0)>>(ADC_RESOLUTION-1);
 			printk("mV: %d\n", real_mv);
 				
-			}
+		}
 		else {
 			printk("NO READOUT FOR YOU!!!\n");
 			printk("ERROR %d\n",err);
