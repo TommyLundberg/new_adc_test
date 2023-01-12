@@ -72,15 +72,18 @@ void main(void){
 		err = adc_read(dev_adc, &adc_ch0_seq);
 			if (!err){
 				printk("ADC read successfull\n");
+				printk("Differential input A0-A1 read\n");
 				k_sleep(K_MSEC(10));
 				printk("Raw value read: %d\n",sample_buffer_0);
+				/*real value = (readout*ref)/(gain*2^(RESOLUTION-1))*/
 				real_mv = (ref_mv*gain_inv*sample_buffer_0)>>(ADC_RESOLUTION-1);
 				printk("mV: %d\n", real_mv);
 				
 			}
 			else{
 				printk("NO READOUT FOR YOU!!!\n");
-				printk("ERROR %s\n",err);
+				printk("ERROR %d\n",err);
+				return -1;
 			}
 
 		k_sleep(K_SECONDS(5));
