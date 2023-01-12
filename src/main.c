@@ -15,7 +15,6 @@
 #define ADC_RESOLUTION 14
 #define ADC_CHANNEL_0  0
 #define ADC_CH0_OVERSAMPLE 8
-#define BUFFER_SIZE 8
 
 static int16_t sample_buffer_0;
 int err;
