@@ -66,7 +66,7 @@ void main(void)
 	}
 	else 
 	{
-			printk("ADC channel setup successfull\n");
+		printk("ADC channel setup successfull\n");
 	}
 
 	adc_state = device_is_ready(adc_dev);
