@@ -81,7 +81,7 @@ void main(void)
 	{	
 		adc_err = adc_read(adc_dev, &adc_ch0_seq);
 
-		if (adc_err=0){
+		if (adc_err == 0){
 			printk("ADC read successfull\n");
 			printk("Differential input A0-A1 read\n");
 
