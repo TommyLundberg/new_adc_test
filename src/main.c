@@ -38,13 +38,13 @@ const struct adc_sequence_options adc_ch0_sequence_opts =
 
 struct adc_sequence adc_ch0_seq = 
 {
-	.options        = &adc_ch0_sequence_opts,
-	.channels       = BIT(ADC_CHANNEL_0),
-	.buffer         = &adc_sample_buffer_0,
-	.buffer_size    = sizeof(adc_sample_buffer_0),
-	.resolution     = ADC_RESOLUTION,
-	.oversampling   = ADC_CH0_OVERSAMPLE,
-	.calibrate      = true,
+	.options      = &adc_ch0_sequence_opts,
+	.channels     = BIT(ADC_CHANNEL_0),
+	.buffer       = &adc_sample_buffer_0,
+	.buffer_size  = sizeof(adc_sample_buffer_0),
+	.resolution   = ADC_RESOLUTION,
+	.oversampling = ADC_CH0_OVERSAMPLE,
+	.calibrate    = true,
 };
 
 void main(void)
@@ -52,11 +52,9 @@ void main(void)
 
 	/*Get the channel configuration from dts overlay
 	and init the adc device	*/
-	static const struct adc_channel_cfg 
-	adc_ch0_cfg_dt = ADC_CHANNEL_CFG_DT(DT_CHILD(DT_NODELABEL(adc), channel_0));
-
+	static const struct adc_channel_cfg adc_ch0_cfg_dt = 
+	ADC_CHANNEL_CFG_DT(DT_CHILD(DT_NODELABEL(adc), channel_0));
 	const struct device *adc_dev = DEVICE_DT_GET(DT_NODELABEL(adc));
-
 	adc_err = adc_channel_setup(adc_dev, &adc_ch0_cfg_dt);
 
 	if (adc_err != 0)
